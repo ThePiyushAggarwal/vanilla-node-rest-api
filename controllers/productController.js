@@ -22,8 +22,26 @@ const getProduct = async (req, res, id) => {
       res.end(JSON.stringify({ message: 'product not found' }))
     } else {
       res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify(product))
+      res.end()
     }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+// @desc Create a Product
+// @route POST /api/products
+const createProduct = async (req, res) => {
+  try {
+    const product = {
+      title: 'Test Product',
+      description: 'This i smy producl',
+      price: 100,
+    }
+
+    const newProduct = Product.create(product)
+
+    return res.end(JSON.stringify({}))
   } catch (error) {
     console.log(error)
   }
