@@ -35,13 +35,13 @@ const createProduct = async (req, res) => {
   try {
     const product = {
       title: 'Test Product',
-      description: 'This i smy producl',
+      description: 'This is my product',
       price: 100,
     }
 
-    const newProduct = Product.create(product)
-
-    return res.end(JSON.stringify({}))
+    const newProduct = await Product.create(product)
+    res.writeHead(201, { 'Content-Type': 'application/json' })
+    return res.end(JSON.stringify(newProduct))
   } catch (error) {
     console.log(error)
   }
@@ -50,4 +50,5 @@ const createProduct = async (req, res) => {
 module.exports = {
   getProducts,
   getProduct,
+  createProduct,
 }
